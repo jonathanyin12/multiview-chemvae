@@ -97,7 +97,7 @@ class MoleculeVAE:
         return z_mean, z_log_var
 
     def _buildEncoder(self, x, f, latent_rep_size, max_length, max_length_features, features_weight, epsilon_std=0.01):
-        h = self._towers(x, f, max_length, max_length_features)
+        h = self._towers(x, f)
 
         def sampling(args):
             z_mean_, z_log_var_ = args
