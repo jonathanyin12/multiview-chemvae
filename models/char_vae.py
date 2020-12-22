@@ -101,9 +101,9 @@ class MoleculeVAE:
     def _buildDecoder(self, z, latent_rep_size, max_length, charset_length):
         h = Dense(latent_rep_size, name='latent_input', activation='relu')(z)
         h = RepeatVector(max_length, name='repeat_vector')(h)
-        h = GRU(512, return_sequences=True, name='gru_1')(h)
-        h = GRU(512, return_sequences=True, name='gru_2')(h)
-        h = GRU(512, return_sequences=True, name='gru_3')(h)
+        h = GRU(512, return_sequences=True, name='gru_1', reset_after=False)(h)
+        h = GRU(512, return_sequences=True, name='gru_2', reset_after=False)(h)
+        h = GRU(512, return_sequences=True, name='gru_3', reset_after=False)(h)
         return TimeDistributed(Dense(charset_length, activation='softmax'), name='decoded_mean')(h)
 
     def save(self, filename):

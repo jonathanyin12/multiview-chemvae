@@ -131,9 +131,9 @@ class MoleculeVAE:
 
         # Tower 1
         h = RepeatVector(max_length, name='repeat_vector')(l)
-        h = GRU(512, return_sequences=True, name='gru_1')(h)
-        h = GRU(512, return_sequences=True, name='gru_2')(h)
-        h = GRU(512, return_sequences=True, name='gru_3')(h)
+        h = GRU(512, return_sequences=True, name='gru_1', reset_after=False)(h)
+        h = GRU(512, return_sequences=True, name='gru_2', reset_after=False)(h)
+        h = GRU(512, return_sequences=True, name='gru_3', reset_after=False)(h)
         h = TimeDistributed(Dense(charset_length, activation='softmax'), name='decoded_mean')(h)
 
         # Tower 2
