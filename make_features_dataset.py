@@ -2,7 +2,7 @@ from descriptastorus.descriptors import rdNormalizedDescriptors
 import h5py
 from tqdm import tqdm
 
-f = open('data/250k_rndm_zinc_drugs_clean.smi', 'r')
+f = open('250k_rndm_zinc_drugs_clean.smi', 'r')
 
 L = []
 

@@ -5,7 +5,7 @@ import h5py
 import molecule_vae
 from tqdm import tqdm
 
-f = open('data/250k_rndm_zinc_drugs_clean.smi', 'r')
+f = open('250k_rndm_zinc_drugs_clean.smi', 'r')
 L = []
 
 count = -1

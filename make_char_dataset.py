@@ -3,7 +3,7 @@ from models.utils import many_one_hot
 import h5py
 from tqdm import tqdm
 
-f = open('data/250k_rndm_zinc_drugs_clean.smi', 'r')
+f = open('250k_rndm_zinc_drugs_clean.smi', 'r')
 
 L = []
 chars = ['C', '(', ')', 'c', '1', '2', 'o', '=', 'O', 'N', '3', 'F', '[', '@', 'H', ']', 'n', '-', '#', 'S', 'l', '+',
