@@ -71,7 +71,7 @@ class GrammarModel(object):
         for ix, lhs in enumerate(self._grammar.lhs_list):
             self._lhs_map[lhs] = ix
         self.vae = self._model.MoleculeVAE()
-        self.vae.load(self._productions, weights_file, max_length=self.MAX_LEN, latent_rep_size=latent_rep_size)
+        self.vae.load(self._productions, weights_file, latent_rep_size=latent_rep_size)
 
     def encode(self, smiles, features=None):
         """ Encode a list of smiles strings into the latent space """
@@ -146,7 +146,7 @@ class CharacterModel(object):
         self._char_index = {}
         for ix, char in enumerate(self.charlist):
             self._char_index[char] = ix
-        self.vae.load(self.charlist, weights_file, max_length=self.MAX_LEN, latent_rep_size=latent_rep_size)
+        self.vae.load(self.charlist, weights_file, latent_rep_size=latent_rep_size)
 
     def encode(self, smiles, features=None):
         """ Encode a list of smiles strings into the latent space """
