@@ -86,9 +86,9 @@ class GrammarModel(object):
             one_hot[i][np.arange(num_productions), indices[i]] = 1.
             one_hot[i][np.arange(num_productions, self.MAX_LEN), -1] = 1.
         if self._two_tower:
-            return self.vae.encoderMV.predict(one_hot)[0]
-        else:
             return self.vae.encoderMV.predict([one_hot, features])[0]
+        else:
+            return self.vae.encoderMV.predict(one_hot)[0]
 
     def _sample_using_masks(self, unmasked):
         """ Samples a one-hot vector, masking at each timestep.
@@ -157,9 +157,10 @@ class CharacterModel(object):
             one_hot[i][np.arange(num_productions), indices[i]] = 1.
             one_hot[i][np.arange(num_productions, self.MAX_LEN), -1] = 1.
         if self._two_tower:
-            return self.vae.encoderMV.predict(one_hot)[0]
-        else:
             return self.vae.encoderMV.predict([one_hot, features])[0]
+        else:
+            return self.vae.encoderMV.predict(one_hot)[0]
+
 
     def decode(self, z):
         """ Sample from the character decoder """
