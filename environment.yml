@@ -1,0 +1,24 @@
+name: multiview_chemvae
+channels:
+  - conda-forge
+  - rdkit
+dependencies:
+  - h5py
+  - hdf5
+  - keras=2.3.1=0
+  - matplotlib
+  - nltk
+  - numpy
+  - pandas
+  - python>=3.6
+  - rdkit
+  - scikit-learn
+  - scipy
+  - seaborn
+  - six
+  - tensorflow=1.15.0
+  - tqdm
+
+  - pip:
+    - descriptastorus
+    - pandas-flavor
