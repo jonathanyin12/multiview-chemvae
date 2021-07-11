@@ -30,9 +30,8 @@ For example:
 
 
 ## Experiments
+The `experiments` directory contains the following Jupyter notebooks for evaluating the performance of the models:
+* Prior validity: `experiments/prior_validity.ipynb`
+* Reconstruction accuracy: `experiments/reconstruction_accuracy.ipynb`
 
-### Prior validity
-
-### Reconstruction accuracy
-
-### Property Prediction
+* Property prediction: `experiments/property_prediction.ipynb`
