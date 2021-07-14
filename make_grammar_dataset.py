@@ -45,7 +45,7 @@ def to_one_hot(smiles):
 def main():
     grammars = Parallel(n_jobs=-1, backend='multiprocessing', verbose=5)(delayed(to_one_hot)([i]) for i in tqdm(L))
     grammars = np.array(grammars, dtype=np.int8)
-    h5f = h5py.File('grammar_dataset_1.h5', 'w')
+    h5f = h5py.File('grammar_dataset.h5', 'w')
     h5f.create_dataset('data', data=grammars)
     h5f.close()
 
