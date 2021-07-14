@@ -25,8 +25,7 @@ for chem in tqdm(L):
         indices.extend((MAX_LEN - len(indices)) * [DIM - 1])
     OH[count, :, :] = many_one_hot(np.array(indices), DIM)
     count = count + 1
-f.close()
+
 h5f = h5py.File('char_dataset.h5', 'w')
 h5f.create_dataset('data', data=OH)
-h5f.create_dataset('chr', data=np.string_(chars))
 h5f.close()

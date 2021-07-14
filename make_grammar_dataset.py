@@ -4,11 +4,11 @@ import numpy as np
 import h5py
 import molecule_vae
 from tqdm import tqdm
+from joblib import Parallel, delayed
 
 f = open('250k_rndm_zinc_drugs_clean.smi', 'r')
 L = []
 
-count = -1
 for line in f:
     line = line.strip()
     L.append(line)
@@ -35,15 +35,20 @@ def to_one_hot(smiles):
         num_productions = len(indices[i])
         one_hot[i][np.arange(num_productions), indices[i]] = 1.
         one_hot[i][np.arange(num_productions, MAX_LEN), -1] = 1.
-    return one_hot
+
+    if len(one_hot)==1:
+        return one_hot[0]
+    else:
+        return one_hot
 
 
-OH = np.zeros((len(L), MAX_LEN, NCHARS), dtype=np.int8)
-for i in tqdm(range(0, len(L), 100)):
-    print('Processing: i=[' + str(i) + ':' + str(i + 100) + ']')
-    onehot = to_one_hot(L[i:i + 100])
-    OH[i:i + 100, :, :] = onehot
+def main():
+    grammars = Parallel(n_jobs=-1, backend='multiprocessing', verbose=5)(delayed(to_one_hot)([i]) for i in tqdm(L))
+    grammars = np.array(grammars, dtype=np.int8)
+    h5f = h5py.File('grammar_dataset_1.h5', 'w')
+    h5f.create_dataset('data', data=grammars)
+    h5f.close()
 
-h5f = h5py.File('grammar_dataset.h5', 'w')
-h5f.create_dataset('data', data=OH)
-h5f.close()
+if __name__ == '__main__':
+    main()
+    
