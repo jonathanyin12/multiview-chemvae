@@ -24,7 +24,7 @@ f.close()
 
 
 def main():
-    features = Parallel(n_jobs=-1, backend='multiprocessing', verbose=5)(delayed(rdkit_2d_normalized_features)(compound) for compound in tqdm(L))
+    features = Parallel(n_jobs=-1, backend='multiprocessing', verbose=0)(delayed(rdkit_2d_normalized_features)(compound) for compound in tqdm(L))
     features=np.expand_dims(np.array(features), axis=2)
     h5f = h5py.File('features_dataset.h5', 'w')
     h5f.create_dataset('data', data=features)

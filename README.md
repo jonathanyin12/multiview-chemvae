@@ -6,7 +6,7 @@ A conda environment is necessary for installation. To create the enviroment, run
 conda env create -f environment.yml
 source activate multiview_chemvae
 ```
-Jupyter notebook is also required to run the ipynb examples in the `experiments` directory.
+Jupyter notebook is also required to run the *.ipynb examples in the `experiments` directory.
 
 ## Creating datasets
 To create the datasets for training, run

@@ -46,7 +46,6 @@ def main():
         
         # Save 5000 for testing
         rdkit_features=rdkit_features[5000:]
-        rdkit_features = np.expand_dims(rdkit_features, axis=2)
 
         # Delete molecules where RDKit features are NaN
         nan_indices = np.unique(np.argwhere(np.isnan(rdkit_features))[:,0])

@@ -59,7 +59,7 @@ class MoleculeVAE:
         self.autoencoder.compile(optimizer=Adam(learning_rate=learning_rate),
                                  loss=vae_loss,
                                  metrics=['accuracy'])
-        print(K.eval(self.autoencoder.optimizer.lr))
+        # print(K.eval(self.autoencoder.optimizer.lr))
 
     def _encoderMeanVar(self, x, latent_rep_size):
         h = Convolution1D(9, 9, activation='relu', name='conv_1')(x)  # used to be 2, 1
