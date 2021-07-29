@@ -41,7 +41,7 @@ def main():
         print('Loading features data.')
         features_data_path = 'features_dataset.h5'
         h5f = h5py.File(features_data_path, 'r')
-        rdkit_features = h5f['rdkit2d_normalized'][:]
+        rdkit_features = h5f['data'][:]
         h5f.close()
         
         # Save 5000 for testing
