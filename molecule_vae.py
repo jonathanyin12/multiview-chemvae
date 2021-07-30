@@ -7,6 +7,10 @@ import models.char_vae
 import models.two_tower_grammar_vae
 import models.two_tower_char_vae
 
+from tqdm import tqdm
+from descriptastorus.descriptors import rdNormalizedDescriptors
+from rdkit.Chem import MolToSmiles, MolFromSmiles, SanitizeMol
+
 
 def get_zinc_tokenizer(cfg):
     long_tokens = [a for a in list(cfg._lexical_index.keys()) if len(a) > 1]
@@ -50,6 +54,50 @@ def prods_to_eq(prods):
         return ''.join(seq)
     except:
         return ''
+
+
+
+generator = rdNormalizedDescriptors.RDKit2DNormalized()
+
+def clean_smiles(smi):
+    mol = MolFromSmiles(smi)
+    SanitizeMol(mol)
+    return MolToSmiles(mol, isomericSmiles=True)
+
+def rdkit_2d_normalized_features(smiles: str):
+    results = generator.process(smiles)
+    processed, features = results[0], results[1:]
+    if processed is None:
+       print("Unable to process smiles %s", smiles)
+    return features
+
+def rdkit_features(smiles_list):
+    features=[]
+    for compound in smiles_list:
+        features.append(rdkit_2d_normalized_features(compound))
+    features=np.expand_dims(features, axis=2)
+    return features
+
+def encode_smiles(model, smiles, targets):
+    smiles_list=[]
+    latent_rep_list = []
+    targets_list=[]
+    for smi, target in tqdm(zip(smiles, targets), total=len(smiles)):
+        try:
+            smi = [clean_smiles(smi)]
+            if model._two_tower:
+                features = rdkit_features(smi)
+            else:
+                features=None
+            z = model.encode(smi, np.array(features))
+            latent_rep_list.append(z.flatten())
+            smiles_list.extend(smi)
+            targets_list.append(target)
+        except:
+            # print('Failed to encode smiles')
+            continue
+
+    return smiles_list, np.array(targets_list), np.array(latent_rep_list)
 
 
 class GrammarModel(object):
