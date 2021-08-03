@@ -1,5 +1,14 @@
-import gzip
-import pandas
+
+# ==================================================================================================
+#
+# This code is modified from code written for "Grammar Variational Autoencoder":
+# https://arxiv.org/abs/1703.01925
+# 
+# Original reference code: 
+# https://github.com/mkusner/grammarVAE/blob/master/models/utils.py
+#
+# ==================================================================================================
+
 import h5py
 import numpy as np
 

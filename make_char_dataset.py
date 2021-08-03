@@ -1,3 +1,14 @@
+
+# ==================================================================================================
+#
+# This code is modified from code written for "Grammar Variational Autoencoder":
+# https://arxiv.org/abs/1703.01925
+# 
+# Original reference code: 
+# https://github.com/mkusner/grammarVAE/blob/master/make_zinc_dataset_str.py
+#
+# ==================================================================================================
+
 import numpy as np
 from models.utils import many_one_hot
 import h5py

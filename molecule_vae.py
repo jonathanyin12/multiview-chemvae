@@ -1,3 +1,14 @@
+
+# ==================================================================================================
+#
+# This code is modified from code written for "Grammar Variational Autoencoder":
+# https://arxiv.org/abs/1703.01925
+# 
+# Original reference code: 
+# https://github.com/mkusner/grammarVAE/blob/master/molecule_vae.py
+#
+# ==================================================================================================
+
 import nltk
 import numpy as np
 
@@ -102,7 +113,7 @@ def encode_smiles(model, smiles, targets):
 
 class GrammarModel(object):
 
-    def __init__(self, weights_file, latent_rep_size=56, two_tower=False):
+    def __init__(self, weights_file, latent_rep_size=128, two_tower=False):
         """ Load the (trained) zinc encoder/decoder, grammar model. """
         self._grammar = zinc_grammar
         self._two_tower = two_tower
@@ -183,7 +194,7 @@ class GrammarModel(object):
 
 class CharacterModel(object):
 
-    def __init__(self, weights_file, latent_rep_size=56, two_tower=False):
+    def __init__(self, weights_file, latent_rep_size=128, two_tower=False):
         self._two_tower = two_tower
         self._model = models.char_vae if not self._two_tower else models.two_tower_char_vae
         self.MAX_LEN = 120

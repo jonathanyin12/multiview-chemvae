@@ -1,3 +1,14 @@
+
+# ==================================================================================================
+#
+# This code is modified from code written for "Grammar Variational Autoencoder":
+# https://arxiv.org/abs/1703.01925
+# 
+# Original reference code: 
+# https://github.com/mkusner/grammarVAE/blob/master/train_zinc.py
+#
+# ==================================================================================================
+
 from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt

@@ -1,3 +1,14 @@
+
+# ==================================================================================================
+#
+# This code is modified from code written for "Grammar Variational Autoencoder":
+# https://arxiv.org/abs/1703.01925
+# 
+# Original reference code: 
+# https://github.com/mkusner/grammarVAE/blob/master/models/model_zinc_str.py
+#
+# ==================================================================================================
+
 from keras import backend as K
 from keras.losses import binary_crossentropy, mse
 from keras.models import Model

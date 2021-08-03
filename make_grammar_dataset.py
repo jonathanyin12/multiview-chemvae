@@ -1,3 +1,14 @@
+
+# ==================================================================================================
+#
+# This code is modified from code written for "Grammar Variational Autoencoder":
+# https://arxiv.org/abs/1703.01925
+# 
+# Original reference code: 
+# https://github.com/mkusner/grammarVAE/blob/master/make_zinc_dataset_grammar.py
+#
+# ==================================================================================================
+
 import nltk
 import zinc_grammar
 import numpy as np
